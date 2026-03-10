@@ -8,13 +8,14 @@
   flex-direction: column;
   align-items: center;
   background-color: lightgrey;
-  padding: 12px 0px;
+  padding: 12px 12px;
   width: 320px;
   height: 520px;
 }
 
 input[type="number"] {
-  width: 80%;
+  width: 100%;
+  box-sizing: border-box;
   text-align: right;
   font-size: 36px;
   padding: 12px 20px;

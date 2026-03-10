@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: darkgray;
+  padding: 12px 0px;
+  width: 320px;
+  height: 560px;
+}
+
+input[type="number"] {
+  width: 80%;
+  text-align: right;
+  font-size: 24px;
+  padding: 12px 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

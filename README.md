@@ -40,12 +40,12 @@ This project performs basic arithmetic operations and demonstrates fundamental *
 
 ## Learning Goals
 
--Practice selecting and manipulating DOM elements
--Understand how event listeners handle user interactions
--Implement application state using JavaScript variables
--Build logic for arithmetic operations
--Handle edge cases such as dividing by zero
--Structure a small front-end project properly
+- Practice selecting and manipulating DOM elements
+- Understand how event listeners handle user interactions
+- Implement application state using JavaScript variables
+- Build logic for arithmetic operations
+- Handle edge cases such as dividing by zero
+- Structure a small front-end project properly
 
 ---
 

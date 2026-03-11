@@ -54,7 +54,7 @@ input[type="number"] {
   gap: 8px;
 }
 
-.number-btn {
+button {
   width: 96px;
   height: 96px;
   border: 1px solid gray;

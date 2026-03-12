@@ -2,14 +2,14 @@ const buttonContainer = document.querySelector("#button-container");
 const numberInput = document.querySelector("#number-input");
 const operatedNumbers = [];
 
-let hasPreviousNumber = false;
+let hasOperationBefore = false;
 let currentOperation = "";
 
 buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList[0] === "number-btn") {
-    if (hasPreviousNumber) numberInput.value = "";
-    hasPreviousNumber = false;
+    if (hasOperationBefore) numberInput.value = "";
+    hasOperationBefore = false;
     numberInput.value += target.textContent;
   } else if (target.classList[0] === "operation-btn") {
     operatedNumbers.push(Number(numberInput.value));
@@ -18,7 +18,7 @@ buttonContainer.addEventListener("click", (e) => {
       showResult(currentOperation);
     }
     currentOperation = target.id;
-    hasPreviousNumber = true;
+    hasOperationBefore = true;
   }
 });
 

@@ -11,7 +11,7 @@ buttonContainer.addEventListener("click", (e) => {
     if (hasOperationBefore) numberInput.value = "";
     hasOperationBefore = false;
     numberInput.value += target.textContent;
-  } else if (target.classList[0] === "operation-btn") {
+  } else if (target.classList[0] === "operation-btn" && !hasOperationBefore) {
     operatedNumbers.push(Number(numberInput.value));
 
     if (operatedNumbers.length > 1) {

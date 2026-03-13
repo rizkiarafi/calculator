@@ -8,9 +8,7 @@ let currentOperation = "";
 buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList[0] === "number-btn") {
-    if (hasOperationBefore) numberInput.value = "";
-    hasOperationBefore = false;
-    numberInput.value += target.textContent;
+    displayNumber(target);
   } else if (target.classList[0] === "operation-btn" && !hasOperationBefore) {
     operatedNumbers.push(Number(numberInput.value));
 
@@ -21,6 +19,12 @@ buttonContainer.addEventListener("click", (e) => {
     hasOperationBefore = true;
   }
 });
+
+function displayNumber(target) {
+  if (hasOperationBefore) numberInput.value = "";
+  hasOperationBefore = false;
+  numberInput.value += target.textContent;
+}
 
 function showResult(id) {
   if (id === "add-btn") {

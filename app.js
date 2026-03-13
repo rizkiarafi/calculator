@@ -21,7 +21,9 @@ buttonContainer.addEventListener("click", (e) => {
 });
 
 function displayNumber(target) {
-  if (hasOperationBefore) numberInput.value = "";
+  if (hasOperationBefore || numberInput.value === "0") {
+    numberInput.value = "";
+  }
   hasOperationBefore = false;
   numberInput.value += target.textContent;
 }

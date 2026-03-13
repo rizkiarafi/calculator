@@ -2,14 +2,17 @@ const buttonContainer = document.querySelector("#button-container");
 const numberInput = document.querySelector("#number-input");
 const operatedNumbers = [];
 
-let hasOperationBefore = false;
+let pressedOperationBefore = false;
 let currentOperation = "";
 
 buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList[0] === "number-btn") {
     displayNumber(target);
-  } else if (target.classList[0] === "operation-btn" && !hasOperationBefore) {
+  } else if (
+    target.classList[0] === "operation-btn" &&
+    !pressedOperationBefore
+  ) {
     operate(target);
   }
 });
@@ -21,14 +24,14 @@ function operate(target) {
     showResult(currentOperation);
   }
   currentOperation = target.id;
-  hasOperationBefore = true;
+  pressedOperationBefore = true;
 }
 
 function displayNumber(target) {
-  if (hasOperationBefore || numberInput.value === "0") {
+  if (pressedOperationBefore || numberInput.value === "0") {
     numberInput.value = "";
   }
-  hasOperationBefore = false;
+  pressedOperationBefore = false;
   numberInput.value += target.textContent;
 }
 

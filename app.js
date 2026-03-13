@@ -5,6 +5,9 @@ const operatedNumbers = [];
 let pressedOperationBefore = false;
 let currentOperation = "";
 
+const operatorRules = {};
+setOperators(operatorRules, add, substract, multiply, divide);
+
 buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList[0] === "number-btn") {
@@ -36,17 +39,20 @@ function displayNumber(target) {
 }
 
 function showResult(id) {
-  if (id === "add-btn") {
-    numberInput.value = add(operatedNumbers[0], operatedNumbers[1]);
-  } else if (id === "substraction-btn") {
-    numberInput.value = substract(operatedNumbers[0], operatedNumbers[1]);
-  } else if (id === "multiply-btn") {
-    numberInput.value = multiply(operatedNumbers[0], operatedNumbers[1]);
-  } else if (id === "division-btn") {
-    numberInput.value = divide(operatedNumbers[0], operatedNumbers[1]);
-  }
+  numberInput.value = operatorRules[id](operatedNumbers[0], operatedNumbers[1]);
+
   operatedNumbers.length = 0;
   operatedNumbers.push(Number(numberInput.value));
+}
+
+function setOperators(operatorRules, ...functionArgs) {
+  const operatorContainer = buttonContainer.querySelector(
+    "#operation-container",
+  );
+  const operators = operatorContainer.children;
+  for (let i = 0; i < operators.length; i++) {
+    operatorRules[operators[i].id] = functionArgs[i];
+  }
 }
 
 function add(num1, num2) {

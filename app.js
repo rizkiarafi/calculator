@@ -10,15 +10,19 @@ buttonContainer.addEventListener("click", (e) => {
   if (target.classList[0] === "number-btn") {
     displayNumber(target);
   } else if (target.classList[0] === "operation-btn" && !hasOperationBefore) {
-    operatedNumbers.push(Number(numberInput.value));
-
-    if (operatedNumbers.length > 1) {
-      showResult(currentOperation);
-    }
-    currentOperation = target.id;
-    hasOperationBefore = true;
+    operate(target);
   }
 });
+
+function operate(target) {
+  operatedNumbers.push(Number(numberInput.value));
+
+  if (operatedNumbers.length > 1) {
+    showResult(currentOperation);
+  }
+  currentOperation = target.id;
+  hasOperationBefore = true;
+}
 
 function displayNumber(target) {
   if (hasOperationBefore || numberInput.value === "0") {

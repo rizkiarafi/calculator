@@ -6,7 +6,7 @@ let pressedOperationBefore = false;
 let currentOperation = "";
 
 const operatorRules = {};
-setOperators(operatorRules, add, substract, multiply, divide);
+setOperatorRules(operatorRules, add, substract, multiply, divide);
 
 buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
@@ -45,7 +45,7 @@ function showResult(id) {
   operatedNumbers.push(Number(numberInput.value));
 }
 
-function setOperators(operatorRules, ...functionArgs) {
+function setOperatorRules(operatorRules, ...functionArgs) {
   const operatorContainer = buttonContainer.querySelector(
     "#operation-container",
   );

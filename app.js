@@ -11,7 +11,7 @@ setOperatorRules(operatorRules, add, substract, multiply, divide);
 buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList[0] === "number-btn") {
-    displayNumber(target);
+    displayTypedNumber(target);
   } else if (
     target.classList[0] === "operation-btn" &&
     !pressedOperationBefore
@@ -30,7 +30,7 @@ function operate(target) {
   pressedOperationBefore = true;
 }
 
-function displayNumber(target) {
+function displayTypedNumber(target) {
   if (pressedOperationBefore || numberInput.value === "0") {
     numberInput.value = "";
   }

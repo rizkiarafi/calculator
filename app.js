@@ -3,6 +3,7 @@ const numberInput = document.querySelector("#number-input");
 const operatedNumbers = [];
 
 let pressedOperationBefore = false;
+let hasPressedNumber = false;
 let currentOperation = "";
 
 const operatorRules = {};
@@ -12,9 +13,18 @@ buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList[0] === "number-btn") {
     displayTypedNumber(target);
+    hasPressedNumber = true;
+  } else if (target.id === "equal-btn" && hasPressedNumber) {
+    if (currentOperation) {
+      operatedNumbers.push(Number(numberInput.value));
+    }
+    if (operatedNumbers.length > 1) {
+      showResult(currentOperation);
+    }
   } else if (
     target.classList[0] === "operation-btn" &&
-    !pressedOperationBefore
+    !pressedOperationBefore &&
+    hasPressedNumber
   ) {
     operate(target);
   }
@@ -22,12 +32,13 @@ buttonContainer.addEventListener("click", (e) => {
 
 function operate(target) {
   operatedNumbers.push(Number(numberInput.value));
-
   if (operatedNumbers.length > 1) {
     showResult(currentOperation);
+    operatedNumbers.push(Number(numberInput.value));
   }
   currentOperation = target.id;
   pressedOperationBefore = true;
+  console.log(currentOperation);
 }
 
 function displayTypedNumber(target) {
@@ -39,10 +50,14 @@ function displayTypedNumber(target) {
 }
 
 function showResult(id) {
-  numberInput.value = operatorRules[id](operatedNumbers[0], operatedNumbers[1]);
-
+  numberInput.value = getResult(id);
   operatedNumbers.length = 0;
-  operatedNumbers.push(Number(numberInput.value));
+  hasPressedNumber = true;
+}
+
+function getResult(id) {
+  const result = operatorRules[id](operatedNumbers[0], operatedNumbers[1]);
+  return result;
 }
 
 function setOperatorRules(operatorRules, ...functionArgs) {

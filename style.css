@@ -70,7 +70,8 @@ input[type="number"] {
   flex-direction: column;
 }
 
-.operation-btn {
+.operation-btn,
+#equal-btn {
   background-color: orangered;
   color: white;
 }

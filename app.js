@@ -3,7 +3,7 @@ const numberInput = document.querySelector("#number-input");
 const operatedNumbers = [];
 
 let pressedOperationBefore = false;
-let hasPressedNumber = false;
+let pressedEqualBefore = false;
 let currentOperation = "";
 
 const operatorRules = {};
@@ -13,18 +13,17 @@ buttonContainer.addEventListener("click", (e) => {
   const target = e.target;
   if (target.classList[0] === "number-btn") {
     displayTypedNumber(target);
-    hasPressedNumber = true;
-  } else if (target.id === "equal-btn" && hasPressedNumber) {
+  } else if (target.id === "equal-btn" && !pressedEqualBefore) {
     if (currentOperation) {
       operatedNumbers.push(Number(numberInput.value));
     }
     if (operatedNumbers.length > 1) {
       showResult(currentOperation);
+      pressedEqualBefore = true;
     }
   } else if (
     target.classList[0] === "operation-btn" &&
-    !pressedOperationBefore &&
-    hasPressedNumber
+    !pressedOperationBefore
   ) {
     operate(target);
   }
@@ -38,21 +37,24 @@ function operate(target) {
   }
   currentOperation = target.id;
   pressedOperationBefore = true;
-  console.log(currentOperation);
 }
 
 function displayTypedNumber(target) {
-  if (pressedOperationBefore || numberInput.value === "0") {
+  if (
+    pressedOperationBefore ||
+    numberInput.value === "0" ||
+    pressedEqualBefore
+  ) {
     numberInput.value = "";
   }
   pressedOperationBefore = false;
+  pressedEqualBefore = false;
   numberInput.value += target.textContent;
 }
 
 function showResult(id) {
   numberInput.value = getResult(id);
   operatedNumbers.length = 0;
-  hasPressedNumber = true;
 }
 
 function getResult(id) {
